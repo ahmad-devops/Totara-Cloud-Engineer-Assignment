@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: php-cron
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: php-cron
+            image: img-php-cli-example-v1:latest
+            imagePullPolicy: IfNotPresent
+          restartPolicy: OnFailure

@@ -1,0 +1,21 @@
+Question A
+
+Totara web application required to execute CLI script as a scheduler task. This scheduler task executes recurring N minutes.
+Assume that you have the `src` folder in the given location and the PHP CLI script located in “src/cli/cron.php”.This CLI script may need to be executed in high availability and highly scalable environment.
+
+
+1.	How do you develop a Dockerfile to execute the CLI script? ( Assume that you can use `php:cli` as the base image)
+    -- Please find the Dockerfile attached which I created to copy the cron.php inside the docker image. 
+    -- The name of the docker image I build is "img-php-cli-example-v1:latest"
+    -- Command used to "docker build -t img-php-cli-example-v1 ."
+
+
+2.	What's your approach to executing the CLI script in a high availability and scalability scenario?
+    -- I will go with Kubernetes to deploy the "img-php-cli-example-v1:latest" docker imaage as a cronjob in the Kubentes cluster.
+    this will not only satisfy the goal to achieve high availability but also we can run docker image as a cronjob as per the required schedule. 
+    -- Please find the "k8s-cron.yaml" attached. 
+
+3.	How do you automate the above docker container to run each minute?
+    -- I have used kubernetes's cronjob to run each minute. 
+    -- Please find the "cronjob-status.png" attached.
+
