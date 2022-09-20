@@ -1,0 +1,16 @@
+Question B
+
+Totara infrastructure team needs to spin up a Jenkins instance on the AWS cloud infrastructure to run cloud CI/CD pipelines.
+
+1.	What's your approach to spinning up a Jenkins instance on AWS cloud infrastructure?
+    -- I will use terraform as IaC to deploy jenkins instance on AWS.
+    -- Please refer "Question-B\jenkins-ec2.tf"
+
+2.	If you decide to use terraform as IaC, How do you develop terraform modules to spin up the EC2 instance for hosting the Jenkins instance?
+    -- Please find the module under "Question-B\ec2-module" path on the repo.
+
+3.	How do you improve your terraform module to grant SSH access and HTTP access?
+    -- I have created module with security group to allow ingress traffic , we can pass SSH and HTTP port value through var.ingressrules to whitelist them.   
+
+4.	What's your approach to automating Jenkins and relevant dependencies installation on the EC2 instance?
+    -- I have used remote-exec provisioner to automatic configure Jenkins and intall the required dependincies on the EC2 instance. 
