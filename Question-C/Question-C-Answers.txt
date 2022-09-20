@@ -1,0 +1,20 @@
+Question C
+
+Totara web application released as a docker image, and it requires nginx,pgsql as dependency containers.
+1.	How do you deploy the above three containers in the Kubernetes cluster?
+    -- I would deploy these containers as deployments with multiple replicas to achieve high availability and scalability.
+    also I would configure service, secrets and config maps accordingly.
+
+2.	If we need to scale the nginx container based on demand how do you achieve it?
+    -- This can be achieved through horizontal pod scaling. Horizontal pod autoscalar can autosacle workloads based on 
+    CPU or memory consumption, or in response to custom metrics reported from within Kubernetes or external metrics from sources outside of your cluster.
+    -- Please check "Question-C\nginx-hpa.yaml"
+
+3.	How you are going to keep Pgsql DB credentials in k8 cluster?
+    -- I will use Secrets to store Pgsql DB credentials. A secret is object which can store sensitive data such as passwords, token or key.
+    -- Please check "Question-C\postgres-secret.yaml"
+
+4.	How do you upgrade the totara application with zero downtime?
+    -- Kubernetes supports couple of update strategies. However I will use RollingUpdate strategy as new pods are added gradually, and old pods are terminated gradually,
+    Hence we can upgarde the application with zero downtime.
+    -- Please refer "Question-C\totara.yaml"

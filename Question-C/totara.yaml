@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: totara-app
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      service: totara-app
+  strategy:
+    type: RollingUpdate #upgrade the totara application with zero downtime
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        service: totara-app
+    spec:
+      containers:
+      - name: totara-app
+        image: totara-app:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
